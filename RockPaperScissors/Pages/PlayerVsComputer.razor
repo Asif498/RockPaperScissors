@@ -1,5 +1,4 @@
-﻿
-@page "/playerVsComputer"
+﻿@page "/playerVsComputer"
 @using RockPaperScissors.Models.Computer;
 @using RockPaperScissors.Models.Game;
 
@@ -7,7 +6,6 @@
 
 <h1>Player Vs Computer</h1>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Change Game Mode</button>
 <button class="btn btn-primary" @onclick="ChooseRock">Rock</button>
 <button class="btn btn-primary" @onclick="ChoosePaper">Paper</button>
 <button class="btn btn-primary" @onclick="ChooseScissors">Scissors</button>
@@ -23,12 +21,11 @@
 <p id="Player1WinsText" hidden>Player 1 wins</p>
 
 @code {
-    private int currentCount = 0;
     private int playerChoice;
     private int computerChoice;
-    private String computerMove = "";
+    private string computerMove = "";
 
-    public String winner = "";
+    private string winner = "";
     private int win = 0;
     private int draw = 0;
     private int loss = 0;
@@ -38,11 +35,6 @@
         rock,
         paper,
         scissors
-    }
-
-    private void IncrementCount()
-    {
-        currentCount++;
     }
 
     private void ChooseRock()
@@ -68,7 +60,7 @@
 
     private void ComputerTurn()
     {
-        Game game = new Game(winner);
+        Game game = new Game("Game Start");
 
         //create computer
         Computer computer1 = new Computer("computer1");
@@ -81,35 +73,13 @@
         computerChoice = computer1.getComputerChoice();
 
         //check who won
-        game.CheckWinner(playerChoice, computerChoice);
+        game.CheckWinner("Player", "Computer", playerChoice, computerChoice);
 
         winner = game.GetWinner();
         win = game.GetWins();
         draw = game.GetDraws();
         loss = game.GetLosses();
 
-        //CheckWinner();
     }
 
-    //private void CheckWinner()
-    //{
-    //    if ((playerChoice+1) % 3 == computerChoice)
-    //    {
-    //        Console.WriteLine("Computer Wins");
-    //        loss++;
-    //        winner = "Computer";
-    //    }
-    //    else if (playerChoice == computerChoice)
-    //    {
-    //        Console.WriteLine("Draw");
-    //        draw++;
-    //        winner = "Draw";
-    //    }
-    //    else
-    //    {
-    //        Console.WriteLine("Player Wins");
-    //        win++;
-    //        winner = "Player";
-    //    }
-    //}
 }

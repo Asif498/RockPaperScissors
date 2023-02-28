@@ -18,9 +18,9 @@ namespace RockPaperScissorsTest
         [Fact]
         public void RockBeatsScissors()
         {
-            String expected = "computer1";
+            String expected = "player1";
             Game RockScissors = new Game("Test");
-            String actual = RockScissors.CheckWinner(0, 2);
+            String actual = RockScissors.CheckWinner("player1", "computer1", 0, 2);
 
             Assert.Equal(actual, expected);
 
@@ -29,9 +29,9 @@ namespace RockPaperScissorsTest
         [Fact]
         public void PaperBeatsRock()
         {
-            String expected = "computer1";
+            String expected = "player1";
             Game PaperRock = new Game("Test");
-            String actual = PaperRock.CheckWinner(1, 0);
+            String actual = PaperRock.CheckWinner("player1", "computer1", 1, 0);
 
             Assert.Equal(actual, expected);
         }
@@ -39,9 +39,9 @@ namespace RockPaperScissorsTest
         [Fact]
         public void ScissorsBeatsPaper()
         {
-            String expected = "computer1";
+            String expected = "player1";
             Game ScissorsPaper = new Game("Test");
-            String actual = ScissorsPaper.CheckWinner(2, 1);
+            String actual = ScissorsPaper.CheckWinner("player1", "computer1", 2, 1);
 
             Assert.Equal(actual, expected);
         }

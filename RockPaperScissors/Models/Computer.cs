@@ -2,12 +2,12 @@
 {
     public class Computer
     {
-        private String computerName="";
+        private string computerName="";
         private int computerChoice;
-        private String computerMove = "";
-        public String winner = "";
+        private string computerMove = "";
+        public string winner = "";
 
-        public Computer(String compName)
+        public Computer(string compName)
         {
             this.computerName = compName;
         }
@@ -25,11 +25,6 @@
         public string getComputerMove()
         {
             return computerMove;
-        }
-
-        public string getWinner()
-        {
-            return winner;
         }
 
         //method for computer to pick
@@ -53,30 +48,6 @@
                 computer.computerMove = "scissors";
             }
 
-            //CheckWinner();
-        }
-
-        public void CheckWinner(Computer computer1, Computer computer2)
-        {
-            if ((computer1.computerChoice + 1) % 3 == computer2.computerChoice)
-            {
-                Console.WriteLine("Computer2 Wins");
-                //loss++;
-                winner = computer2.getComputerName();
-                
-            }
-            else if (computer1.computerChoice == computer2.computerChoice)
-            {
-                Console.WriteLine("Draw");
-                //draw++;
-                winner = "Draw";
-            }
-            else
-            {
-                Console.WriteLine("Computer1 Wins");
-                //win++;
-                winner = computer1.getComputerName();
-            }
         }
 
     }

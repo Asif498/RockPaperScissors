@@ -1,5 +1,6 @@
 ﻿@page "/computerVsComputer"
 @using RockPaperScissors.Models.Computer
+@using RockPaperScissors.Models.Game;
 
 <PageTitle>ComputerVsComputer</PageTitle>
 
@@ -17,13 +18,13 @@
 <p role="status">Win: @win    Draw: @draw    Loss: @loss</p>
 
 @code {
-    private String computer1Move =  "";
-    private String computer2Move = "";
-    public String winner = "";
+    private string computer1Move = "";
+    private string computer2Move = "";
+    public string winner = "";
 
-    private int win = 0;
-    private int draw = 0;
-    private int loss = 0;
+    int win = 0;
+    int draw = 0;
+    int loss = 0;
 
     enum choice
     {
@@ -34,10 +35,11 @@
 
     private void PlayGame()
     {
+        Game game = new Game("Game Start");
         //create computers
-        Computer computer1 = new Computer("computer1");
+        Computer computer1 = new Computer("Computer 1");
         Console.WriteLine(computer1.getComputerName());
-        Computer computer2 = new Computer("computer2");
+        Computer computer2 = new Computer("Computer 2");
         Console.WriteLine(computer2.getComputerName());
 
 
@@ -49,8 +51,8 @@
         Console.WriteLine(computer2.getComputerMove());
         computer2Move = computer2.getComputerMove();
 
-        computer1.CheckWinner(computer1, computer2);
-        winner = computer1.getWinner();
+        game.CheckWinner("computer1", "computer2", computer1.getComputerChoice(), computer2.getComputerChoice());
+        winner = game.GetWinner();
     }
     
 
