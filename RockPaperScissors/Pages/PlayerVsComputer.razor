@@ -1,4 +1,7 @@
-﻿@page "/playerVsComputer"
+﻿
+@page "/playerVsComputer"
+@using RockPaperScissors.Models.Computer;
+@using RockPaperScissors.Models.Game;
 
 <PageTitle>PlayerVsComputer</PageTitle>
 
@@ -11,6 +14,10 @@
 
 <p id="ComputerChoice">Computer chose: @computerMove </p>
 
+<p id="winner">Winner: @winner </p>
+
+<h2>Player Vs Computer Stats</h2>
+
 <p role="status">Win: @win    Draw: @draw    Loss: @loss</p>
 
 <p id="Player1WinsText" hidden>Player 1 wins</p>
@@ -19,8 +26,9 @@
     private int currentCount = 0;
     private int playerChoice;
     private int computerChoice;
-    private String computerMove="";
+    private String computerMove = "";
 
+    public String winner = "";
     private int win = 0;
     private int draw = 0;
     private int loss = 0;
@@ -35,7 +43,6 @@
     private void IncrementCount()
     {
         currentCount++;
-        Console.WriteLine("hello world");
     }
 
     private void ChooseRock()
@@ -59,46 +66,50 @@
         ComputerTurn();
     }
 
-    //method for computer to pick
     private void ComputerTurn()
     {
-        Random random = new Random();
-        int randomNo = random.Next(0,3);
-        Console.WriteLine("random number : " + randomNo);
-        computerChoice = randomNo;
+        Game game = new Game(winner);
 
-        if (randomNo==0)
-        {
-            computerMove = "rock";
-        }
-        else if (randomNo == 1)
-        {
-            computerMove = "paper";
-        }
-        else if (randomNo == 2)
-        {
-            computerMove = "scissors";
-        }
+        //create computer
+        Computer computer1 = new Computer("computer1");
+        Console.WriteLine(computer1.getComputerName());
 
-        CheckWinner();
+        //computer's turn
+        computer1.ComputerTurn(computer1);
+        Console.WriteLine(computer1.getComputerMove());
+        computerMove = computer1.getComputerMove();
+        computerChoice = computer1.getComputerChoice();
+
+        //check who won
+        game.CheckWinner(playerChoice, computerChoice);
+
+        winner = game.GetWinner();
+        win = game.GetWins();
+        draw = game.GetDraws();
+        loss = game.GetLosses();
+
+        //CheckWinner();
     }
 
-    private void CheckWinner()
-    {
-        if ((playerChoice+1) % 3 == computerChoice)
-        {
-            Console.WriteLine("Computer Wins");
-            loss++;
-        }
-        else if (playerChoice == computerChoice)
-        {
-            Console.WriteLine("Draw");
-            draw++;
-        }
-        else
-        {
-            Console.WriteLine("Player Wins");
-            win++;
-        }
-    }
+    //private void CheckWinner()
+    //{
+    //    if ((playerChoice+1) % 3 == computerChoice)
+    //    {
+    //        Console.WriteLine("Computer Wins");
+    //        loss++;
+    //        winner = "Computer";
+    //    }
+    //    else if (playerChoice == computerChoice)
+    //    {
+    //        Console.WriteLine("Draw");
+    //        draw++;
+    //        winner = "Draw";
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("Player Wins");
+    //        win++;
+    //        winner = "Player";
+    //    }
+    //}
 }
