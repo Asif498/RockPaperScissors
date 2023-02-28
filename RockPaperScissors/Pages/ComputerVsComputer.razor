@@ -1,0 +1,101 @@
+﻿@page "/computerVsComputer"
+
+<PageTitle>ComputerVsComputer</PageTitle>
+
+<h1>Computer Vs Computer</h1>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Play Game</button>
+
+<p id="ComputerChoice">Computer chose: @computerMove </p>
+
+<p role="status">Win: @win    Draw: @draw    Loss: @loss</p>
+
+<p id="Player1WinsText" hidden>Player 1 wins</p>
+
+@code {
+    private int currentCount = 0;
+    private int playerChoice;
+    private int computerChoice;
+    private String computerMove = "";
+
+    private int win = 0;
+    private int draw = 0;
+    private int loss = 0;
+
+    enum choice
+    {
+        rock,
+        paper,
+        scissors
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        Console.WriteLine("hello world");
+    }
+
+    private void ChooseRock()
+    {
+        playerChoice = (int)choice.rock;
+        Console.WriteLine(playerChoice);
+        ComputerTurn();
+    }
+
+    private void ChoosePaper()
+    {
+        playerChoice = (int)choice.paper;
+        Console.WriteLine(playerChoice);
+        ComputerTurn();
+    }
+
+    private void ChooseScissors()
+    {
+        playerChoice = (int)choice.scissors;
+        Console.WriteLine(playerChoice);
+        ComputerTurn();
+    }
+
+    //method for computer to pick
+    private void ComputerTurn()
+    {
+        Random random = new Random();
+        int randomNo = random.Next(0, 3);
+        Console.WriteLine("random number : " + randomNo);
+        computerChoice = randomNo;
+
+        if (randomNo == 0)
+        {
+            computerMove = "rock";
+        }
+        else if (randomNo == 1)
+        {
+            computerMove = "paper";
+        }
+        else if (randomNo == 2)
+        {
+            computerMove = "scissors";
+        }
+
+        CheckWinner();
+    }
+
+    private void CheckWinner()
+    {
+        if ((playerChoice + 1) % 3 == computerChoice)
+        {
+            Console.WriteLine("Computer Wins");
+            loss++;
+        }
+        else if (playerChoice == computerChoice)
+        {
+            Console.WriteLine("Draw");
+            draw++;
+        }
+        else
+        {
+            Console.WriteLine("Player Wins");
+            win++;
+        }
+    }
+}
