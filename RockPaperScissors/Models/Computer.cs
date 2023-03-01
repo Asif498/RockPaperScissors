@@ -27,7 +27,6 @@
             return computerMove;
         }
 
-        //method for computer to pick
         public void ComputerTurn(Computer computer)
         {
             Random random = new Random();

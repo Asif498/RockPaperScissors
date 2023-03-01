@@ -16,9 +16,9 @@
 
 <h2>Player Vs Computer Stats</h2>
 
-<p role="status">Win: @win    Draw: @draw    Loss: @loss</p>
-
-<p id="Player1WinsText" hidden>Player 1 wins</p>
+<p>Win: @win    Draw: @draw    Loss: @loss</p>
+<p>Total Games: @totalGames</p>
+<p>Win %: @winPercentage</p>
 
 @code {
     private int playerChoice;
@@ -29,6 +29,9 @@
     private int win = 0;
     private int draw = 0;
     private int loss = 0;
+
+    private int totalGames = 0;
+    private int winPercentage = 0;
 
     enum choice
     {
@@ -58,6 +61,25 @@
         ComputerTurn();
     }
 
+    private void UpdateStats(string winner)
+    {
+        if (winner == "Player")
+        {
+            win++;
+        }
+        else if (winner == "Draw")
+        {
+            draw++;
+        }
+        else
+        {
+            loss++;
+        }
+        totalGames++;
+        winPercentage = (int)((double)win / totalGames * 100);
+        Console.WriteLine(winPercentage);
+    }
+
     private void ComputerTurn()
     {
         Game game = new Game("Game Start");
@@ -76,9 +98,8 @@
         game.CheckWinner("Player", "Computer", playerChoice, computerChoice);
 
         winner = game.GetWinner();
-        win = game.GetWins();
-        draw = game.GetDraws();
-        loss = game.GetLosses();
+
+        UpdateStats(winner);
 
     }
 
