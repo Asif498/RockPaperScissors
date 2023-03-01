@@ -11,9 +11,7 @@
 <p id="ComputerChoice">Computer 1 chose: @computer1Move </p>
 <p id="ComputerChoice">Computer 2 chose: @computer2Move </p>
 
-<p role="status">Winner: @winner</p>
-
-<h2>Computer Vs Computer Stats</h2>
+<p>Winner: @winner</p>
 
 @code {
     private string computer1Move = "";
@@ -49,7 +47,7 @@
         Console.WriteLine(computer2.getComputerMove());
         computer2Move = computer2.getComputerMove();
 
-        game.CheckWinner("computer1", "computer2", computer1.getComputerChoice(), computer2.getComputerChoice());
+        game.CheckWinner("Computer 1", "Computer 2", computer1.getComputerChoice(), computer2.getComputerChoice());
         winner = game.GetWinner();
     }
     
