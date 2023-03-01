@@ -5,15 +5,6 @@ namespace RockPaperScissorsTest
 {
     public class GameRulesTest
     {
-        //public GameRulesTest()
-        //{
-        //    Game RockScissors = new Game("Test");
-        //    RockScissors.CheckWinner(0, 2);
-        //    Game PaperRock = new Game("Test");
-        //    PaperRock.CheckWinner(1,0);
-        //    Game ScissorsPaper = new Game("Test");
-        //    ScissorsPaper.CheckWinner(2,1);
-        //}
 
         [Fact]
         public void RockBeatsScissors()
